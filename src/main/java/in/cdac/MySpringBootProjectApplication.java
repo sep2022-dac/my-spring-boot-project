@@ -17,6 +17,10 @@ public class MySpringBootProjectApplication {
 	public String hello() {
 		return "Hello World!";
 	}
+
+	public String hello1() {
+		return "Hello World!";
+	}
 }
 
 
