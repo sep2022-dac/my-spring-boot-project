@@ -5,6 +5,7 @@ import in.cdac.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,12 @@ public class GreetingController {
     public ResponseEntity<?> readGreetingById(@PathVariable Integer id) {
         Greeting greeting = greetingService.readGreetingById(id);
         return new ResponseEntity<>(greeting, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    public ResponseEntity<?> deleteRecordById(@PathVariable Integer id) {
+        boolean byId = greetingService.deleteById(id);
+        return new ResponseEntity<>(byId, HttpStatus.GONE);
     }
 
 

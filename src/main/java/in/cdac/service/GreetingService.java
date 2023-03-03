@@ -30,6 +30,10 @@ public class GreetingService {
         });
     }
 
+    public boolean deleteById(Integer id) {
+        greetingRepository.deleteById(id);
+        return true;
+    }
 
 
     public Greeting addRecordHardCoded() {
