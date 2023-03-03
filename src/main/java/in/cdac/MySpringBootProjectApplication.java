@@ -13,14 +13,25 @@ public class MySpringBootProjectApplication {
 		SpringApplication.run(MySpringBootProjectApplication.class, args);
 	}
 
+	// http://localhost:8080
 	@GetMapping
 	public String hello() {
+		// ...business logic
 		return "Hello World!";
 	}
 
+	// http://localhost:8080/hello1
+	@GetMapping("/hello1")
 	public String hello1() {
-		return "Hello World!";
+		return "Duplicate World!";
 	}
+
+	// http://localhost:8080/h2
+	@GetMapping("/h2")
+	public String hello2() {
+		return "Duplicate World 2222222!";
+	}
+
 }
 
 
