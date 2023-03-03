@@ -14,22 +14,8 @@ public class GreetingController {
     GreetingService greetingService;
 
     @GetMapping("/message")
-    public String greetingMessage() {
-        return greetingService.getGreeting();
-    }
-
-    @GetMapping("/message-obj-v1")
     public Greeting getGreetingObjectV1() {
-        // return greetingService.getGreetingObject();
         return greetingService.getGreetingObjectV3();
     }
-
-    /*@GetMapping("/message-java-geeks")
-    public String greetingMessageJavaGeeks() {
-        GreetingService greetingService1 = new GreetingService();
-        return greetingService1.getGreeting();
-    }*/
-
-
 
 }
