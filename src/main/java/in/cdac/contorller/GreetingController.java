@@ -9,11 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
     @Autowired
     GreetingService greetingService;
+
+    @GetMapping("/all-greetings")
+    public ResponseEntity<?> getAllGreetings() {
+        List<Greeting> allGrettings = greetingService.getAllGrettings();
+        return new ResponseEntity<>(allGrettings, HttpStatus.OK);
+    }
 
     @GetMapping("/message")
     public Greeting getGreetingObjectV1() {
