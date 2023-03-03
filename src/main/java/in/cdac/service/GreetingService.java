@@ -10,8 +10,19 @@ import java.util.List;
 @Service
 public class GreetingService {
 
+
     @Autowired
     GreetingRepository greetingRepository;
+
+
+    public Greeting addRecordHardCoded() {
+        Greeting greeting = Greeting.builder()
+                .message("“Inside of every problem lies an opportunity ........Thanks Postgres for Saving my day..”")
+                .build();
+
+        // Saving into the databse here.
+        return greetingRepository.save(greeting);
+    }
 
     public List<Greeting> getAllGrettings() {
         return greetingRepository.findAll();
