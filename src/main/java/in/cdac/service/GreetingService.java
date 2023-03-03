@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -13,6 +14,22 @@ public class GreetingService {
 
     @Autowired
     GreetingRepository greetingRepository;
+
+    public Greeting addRecord(Greeting greeting) {
+        return greetingRepository.save(greeting);
+    }
+
+    public List<Greeting> getAllGrettings() {
+        return greetingRepository.findAll();
+    }
+
+    public Greeting readGreetingById(Integer id) {
+        Optional<Greeting> optionalGreeting = greetingRepository.findById(id);
+        return optionalGreeting.orElseGet(() -> {
+             throw new RuntimeException("Record Does not Exists. Please check the ID");
+        });
+    }
+
 
 
     public Greeting addRecordHardCoded() {
@@ -23,11 +40,6 @@ public class GreetingService {
         // Saving into the databse here.
         return greetingRepository.save(greeting);
     }
-
-    public List<Greeting> getAllGrettings() {
-        return greetingRepository.findAll();
-    }
-
 
     public Greeting getGreetingObjectV3() {
         return Greeting.builder()

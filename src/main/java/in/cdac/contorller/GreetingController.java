@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,17 +20,29 @@ public class GreetingController {
     @Autowired
     GreetingService greetingService;
 
+    @PostMapping("/add-record")
+    public ResponseEntity<?> addRecord(@RequestBody Greeting greeting) {
+        Greeting greeting1 = greetingService.addRecord(greeting);
+        return new ResponseEntity<>(greeting1, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/read-all-record")
+    public ResponseEntity<?> getAllGreetings() {
+        List<Greeting> allGrettings = greetingService.getAllGrettings();
+        return new ResponseEntity<>(allGrettings, HttpStatus.OK);
+    }
+
+    @GetMapping("/read-by-id/{id}")
+    public ResponseEntity<?> readGreetingById(@PathVariable Integer id) {
+        Greeting greeting = greetingService.readGreetingById(id);
+        return new ResponseEntity<>(greeting, HttpStatus.OK);
+    }
+
 
     @PostMapping("/add-record-hard-coded")
     public ResponseEntity<?> addRecordHardCoded() {
         Greeting greeting = greetingService.addRecordHardCoded();
         return new ResponseEntity<>(greeting, HttpStatus.CREATED);
-    }
-
-    @GetMapping("/all-greetings")
-    public ResponseEntity<?> getAllGreetings() {
-        List<Greeting> allGrettings = greetingService.getAllGrettings();
-        return new ResponseEntity<>(allGrettings, HttpStatus.OK);
     }
 
     @GetMapping("/message")
