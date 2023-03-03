@@ -1,5 +1,6 @@
 package in.cdac.contorller;
 
+import in.cdac.modal.Greeting;
 import in.cdac.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,12 @@ public class GreetingController {
     @GetMapping("/message")
     public String greetingMessage() {
         return greetingService.getGreeting();
+    }
+
+    @GetMapping("/message-obj-v1")
+    public Greeting getGreetingObjectV1() {
+        // return greetingService.getGreetingObject();
+        return greetingService.getGreetingObjectV3();
     }
 
     /*@GetMapping("/message-java-geeks")
